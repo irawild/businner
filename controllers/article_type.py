@@ -57,7 +57,7 @@ def update(name: str, article_received: ArticleType) -> Union[ArticleType, None]
     types_list = get_list()
     for article_type in types_list:
         if article_type['name'] == name:
-            article_type.description = article_received.description
+            article_type['description'] = article_received.description
             with open('data/article_types.json', 'w') as outfile:
                 json.dump(types_list, outfile)
             return article_received

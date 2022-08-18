@@ -28,7 +28,7 @@ def delete_article_type(name: str):
 
 @app.put("/article-types/{name}")
 def update_article_type(name: str, article_type_received: ArticleType):
-    return article_type.update(id, article_type_received)
+    return article_type.update(name, article_type_received)
 
 #  Articles API
 @app.get("/articles/")
