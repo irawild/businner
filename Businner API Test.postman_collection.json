@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "3fb1615e-a9ed-4a6c-88f9-436ff5c5a13b",
+		"name": "Businner API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "730054"
+	},
+	"item": [
+		{
+			"name": "Articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/articles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Articles",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"type\": \"portfolio\",\n        \"date\": \"17/08/2022\",\n        \"name\": \"Carteira recomendada\",\n        \"call\": \"Quais entram e quais saem em agosto\",\n        \"content\": \"Entre FIIs de papel e empresas do setor defensivo estão as que saem. Varejo e alimentos básicos entram.\",\n        \"visible\": true\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "Post Articles",
+					"host": [
+						"Post Articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Articles",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"type\": \"strategy\",\n    \"date\": \"17/08/2022\",\n    \"name\": \"Carteira recomendada\",\n    \"call\": \"Quais entram e quais saem em agosto\",\n    \"content\": \"Entre FIIs de papel e empresas do setor defensivo estão as que saem. Varejo e alimentos básicos entram.\",\n    \"visible\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/articles/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"articles",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Articles",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/articles/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"articles",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Article Types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/article-types/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"article-types",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Article Types by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/article-types/?name=strategy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"article-types",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "strategy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Article Types",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"inclusion\",\n    \"description\": \"Apenas um teste de inclusão\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/article-types/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"article-types",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Article Types",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/article-types/inclusion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"article-types",
+						"inclusion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Article Types",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"inclusion\",\n    \"description\": \"Apenas um teste de alteração\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/article-types/inclusion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"article-types",
+						"inclusion"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Body matches string\", function () {",
+					"    pm.expect(pm.response.text()).to.include(\"mercado brasileiro\");",
+					"});"
+				]
+			}
+		}
+	]
+}
