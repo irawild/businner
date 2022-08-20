@@ -1,9 +1,9 @@
-from models.article_type import ArticleType
+from app.models.article_type import ArticleType
 from typing import Union
 import json
 
 def get_list():
-    with open('data/article_types.json', 'r') as types_file:
+    with open('app/data/article_types.json', 'r') as types_file:
         json_file = json.load(types_file)
     
     return json_file
@@ -35,7 +35,7 @@ def create(article_type_received: ArticleType) -> Union[ArticleType, None]:
         "description": article_type_received.description, 
     }
     types_list.append(article_type_dict)
-    with open('data/article_types.json', 'w') as outfile:
+    with open('app/data/article_types.json', 'w') as outfile:
         json.dump(types_list, outfile)
     
     return article_type_dict
@@ -47,7 +47,7 @@ def delete(name: str) -> Union[ArticleType, None]:
         return_article = article_type
         if article_type['name'] == name:
             types_list.remove(article_type)
-            with open('data/article_types.json', 'w') as outfile:
+            with open('app/data/article_types.json', 'w') as outfile:
                 json.dump(types_list, outfile)
             return return_article
     
@@ -57,8 +57,8 @@ def update(name: str, article_received: ArticleType) -> Union[ArticleType, None]
     types_list = get_list()
     for article_type in types_list:
         if article_type['name'] == name:
-            article_type.description = article_received.description
-            with open('data/article_types.json', 'w') as outfile:
+            article_type['description'] = article_received.description
+            with open('app/data/article_types.json', 'w') as outfile:
                 json.dump(types_list, outfile)
             return article_received
     
