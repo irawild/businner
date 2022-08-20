@@ -1,5 +1,5 @@
 import json
-from models.article import Article
+from app.models.article import Article
 
 articles_list = []
 
@@ -48,7 +48,7 @@ def post(article_received: Article):
         "visible": bool(article_received.visible),
     }
     articles_list.append(article_dict)
-    with open('data/articles.json', 'w') as outfile:
+    with open('app/data/articles.json', 'w') as outfile:
         json.dump(articles_list, outfile)
 
     return article_dict
@@ -60,7 +60,7 @@ def delete(id: int):
         return_article = article
         if article['id'] == id:
             articles_list.remove(article)
-            with open('data/articles.json', 'w') as outfile:
+            with open('app/data/articles.json', 'w') as outfile:
                 json.dump(articles_list, outfile)
             return return_article
 
@@ -74,12 +74,12 @@ def put(id: int, article_received: Article):
             article['call'] = article_received.call
             article['content'] = article_received.content
             article['visible'] = bool(article_received.visible)
-            with open('data/articles.json', 'w') as outfile:
+            with open('app/data/articles.json', 'w') as outfile:
                 json.dump(articles_list, outfile)
             return article
 
 def get_list():
-    with open('data/articles.json', 'r') as articles_file:
+    with open('app/data/articles.json', 'r') as articles_file:
         json_file = json.load(articles_file)
     
     return json_file

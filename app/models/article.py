@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-from .article_type import ArticleType
-
 class Article(BaseModel):
     id: int | None = None
     type: str
