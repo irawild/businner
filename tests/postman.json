@@ -8,6 +8,27 @@
 	"item": [
 		{
 			"name": "Articles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Strategy type found\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"strategy\");",
+							"});",
+							"",
+							"pm.test(\"Portfolio type found\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"portfolio\");",
+							"});",
+							"",
+							"pm.test(\"Macro type not found\", function () {",
+							"    pm.expect(pm.response.text()).to.not.include(\"macro\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -27,6 +48,27 @@
 		},
 		{
 			"name": "Post Articles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Strategy type not found\", function () {",
+							"    pm.expect(pm.response.text()).to.not.include(\"strategy\");",
+							"});",
+							"",
+							"pm.test(\"Portfolio type not found\", function () {",
+							"    pm.expect(pm.response.text()).to.not.include(\"portfolio\");",
+							"});",
+							"",
+							"pm.test(\"Macro type found\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"macro\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -35,7 +77,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\n        \"type\": \"portfolio\",\n        \"date\": \"17/08/2022\",\n        \"name\": \"Carteira recomendada\",\n        \"call\": \"Quais entram e quais saem em agosto\",\n        \"content\": \"Entre FIIs de papel e empresas do setor defensivo estão as que saem. Varejo e alimentos básicos entram.\",\n        \"visible\": true\n    }",
+					"raw": "    {\n        \"type\": \"macro\",\n        \"date\": \"17/08/2022\",\n        \"name\": \"Carteira recomendada\",\n        \"call\": \"Quais entram e quais saem em agosto\",\n        \"content\": \"Entre FIIs de papel e empresas do setor defensivo estão as que saem. Varejo e alimentos básicos entram.\",\n        \"visible\": true\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,9 +85,14 @@
 					}
 				},
 				"url": {
-					"raw": "Post Articles",
+					"raw": "http://localhost/articles/",
+					"protocol": "http",
 					"host": [
-						"Post Articles"
+						"localhost"
+					],
+					"path": [
+						"articles",
+						""
 					]
 				}
 			},
@@ -58,7 +105,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 2,\n    \"type\": \"strategy\",\n    \"date\": \"17/08/2022\",\n    \"name\": \"Carteira recomendada\",\n    \"call\": \"Quais entram e quais saem em agosto\",\n    \"content\": \"Entre FIIs de papel e empresas do setor defensivo estão as que saem. Varejo e alimentos básicos entram.\",\n    \"visible\": true\n}",
+					"raw": "{\n    \"id\": 2,\n    \"type\": \"strategy\",\n    \"date\": \"17/08/2022\",\n    \"name\": \"Carteira recomendada\",\n    \"call\": \"Teste de alteração\",\n    \"content\": \"Entre FIIs de papel e empresas do setor defensivo estão as que saem. Varejo e alimentos básicos entram.\",\n    \"visible\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -233,9 +280,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"pm.test(\"Body matches string\", function () {",
-					"    pm.expect(pm.response.text()).to.include(\"mercado brasileiro\");",
-					"});"
+					""
 				]
 			}
 		}
