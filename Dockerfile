@@ -9,4 +9,4 @@ COPY ./app/data /code/app/data
 COPY ./app/img /code/app/img
 COPY ./app/pages /code/app/pages
 COPY ./app/utils /code/app/utils
-CMD ["uvicorn", "app.main:api", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]

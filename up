@@ -1,0 +1,40 @@
+SCRIPT_DIR=$(cd `dirname $0` && pwd)
+ROOT_DIR=${SCRIPT_DIR}
+COMPOSE_COMMAND="${SCRIPT_DIR}/compose --local"
+OPTIONS="-d"
+IMAGE_VERSION="latest"
+
+die() {
+    echo "$*" 1>&2
+    exit 1
+}
+
+while :; do
+  case ${1} in
+    -h|-\?|--help)
+      display_help
+      exit
+      ;;
+    --build)
+      OPTIONS="${OPTIONS} --build"
+      ;;
+    -v|--version)
+      if [ "$2" ]; then
+        IMAGE_VERSION="${2}"
+      fi
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -?*)
+      printf 'WARN: Unkown option (ignored): %s\n' "${1}" >&2
+      ;;
+    *)
+      break
+  esac
+  shift
+done
+
+export IMAGE_VERSION
+${COMPOSE_COMMAND} up "${OPTIONS}"
