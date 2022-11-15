@@ -3,3 +3,18 @@ version: '3.8'
 networks:
   external:    
     name: businner_net
+
+services:
+  db:
+    image: postgres:15.0
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: businner_password
+      POSTGRES_DB: businner_db
+    volumes:
+      - db_volume:/var/lib/postgres/data
+
+volumes:
+  db_volume:
