@@ -13,6 +13,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     items = relationship("Item", back_populates="owner")
+    articles = relationship("Article", back_populates="owner")
 
 
 class Item(Base):
@@ -24,3 +25,14 @@ class Item(Base):
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     owner = relationship("User", back_populates="items")
+
+
+class Article(Base):
+    __tablename__ = "articles"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    body = Column(String, index=True)
+    owner_id = Column(Integer, ForeignKey("users.id"))
+
+    owner = relationship("User", back_populates="articles")

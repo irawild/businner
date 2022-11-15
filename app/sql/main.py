@@ -51,3 +51,16 @@ def create_item_for_user(
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
+
+
+@app.post("/users/{user_id}/articles/", response_model=schemas.Article)
+def create_article_for_user(
+    user_id: int, article: schemas.ArticleCreate, db: Session = Depends(get_db)
+):
+    return crud.create_article(db=db, article=article, user_id=user_id)
+
+
+@app.get("/articles/", response_model=list[schemas.Item])
+def read_articles(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    articles = crud.get_articles(db, skip=skip, limit=limit)
+    return articles

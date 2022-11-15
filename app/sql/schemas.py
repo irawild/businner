@@ -1,6 +1,20 @@
 from pydantic import BaseModel
 
 
+class ArticleBase(BaseModel):
+    title: str
+    body: str | None = None
+
+class ArticleCreate(ArticleBase):
+    pass
+
+class Article(ArticleBase):
+    id: int
+    owner_id: int
+
+    class Config:
+        orm_mode = True
+
 class ItemBase(BaseModel):
     title: str
     description: str | None = None

@@ -34,3 +34,14 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+def get_articles(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Article).offset(skip).limit(limit).all()
+
+
+def create_article(db: Session, article: schemas.ArticleCreate, user_id: int):
+    db_article = models.Article(**article.dict(), owner_id=user_id)
+    db.add(db_article)
+    db.commit()
+    db.refresh(db_article)
+    return db_article
