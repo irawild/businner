@@ -1,0 +1,25 @@
+name: deploy to hlg
+on:
+  workflow_call:
+    inputs:
+      IMAGE_NAME:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run an one-line script
+        run: echo just built hlg env!
+        
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: hlg
+      url: hlg.businner.com.br
+    needs: build
+    steps:
+      - name: Script to deploy hlg environment
+        run: echo hlg deployed
+        

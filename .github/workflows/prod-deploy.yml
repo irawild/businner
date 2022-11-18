@@ -1,0 +1,25 @@
+name: deploy to prod
+on:
+  workflow_call:
+    inputs:
+      IMAGE_NAME:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run an one-line script
+        run: echo just built prod env!
+        
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: hlg
+      url: hlg.businner.com.br
+    needs: build
+    steps:
+      - name: Script to deploy production
+        run: echo hlg deployed
+        

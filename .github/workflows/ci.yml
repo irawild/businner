@@ -1,0 +1,21 @@
+name: ci
+
+on: push
+
+jobs:
+  deploy-dev:
+    uses: ./.github/workflows/dev-deploy.yml
+    with:
+      IMAGE_NAME: businner-net:latest
+
+  deploy-hlg:
+    needs: deploy-dev
+    uses: ./.github/workflows/hlg-deploy.yml
+    with:
+      IMAGE_NAME: businner-net:latest
+
+  deploy-prod:
+    needs: deploy-hlg
+    uses: ./.github/workflows/prod-deploy.yml
+    with:
+      IMAGE_NAME: businner-net:latest
