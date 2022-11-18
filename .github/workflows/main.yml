@@ -1,0 +1,20 @@
+name: BusinnerCI
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run an one-line script
+        run: echo Hello, world!
+        
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: dev.businner.com.br
+    needs: build
+    steps:
+      - name: Script to deploy dev environment
+        run: echo dev deployed
