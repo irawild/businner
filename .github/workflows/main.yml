@@ -18,3 +18,23 @@ jobs:
     steps:
       - name: Script to deploy dev environment
         run: echo dev deployed
+        
+  deploy-hlg:
+    runs-on: ubuntu-latest
+    environment:
+      name: hlg
+      url: hlg.businner.com.br
+    needs: deploy-dev
+    steps:
+      - name: Script to deploy hlg environment
+        run: echo hlg deployed
+      
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+      url: businner.com.br
+    needs: deploy-hlg
+    steps:
+      - name: Script to deploy to prod
+        run: echo prod deployed
