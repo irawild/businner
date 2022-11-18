@@ -6,16 +6,22 @@ jobs:
   deploy-dev:
     uses: ./.github/workflows/dev-deploy.yml
     with:
-      IMAGE_NAME: businner-net:latest
+      IMAGE_NAME:
+        required: true
+        type: string
 
   deploy-hlg:
     needs: deploy-dev
     uses: ./.github/workflows/hlg-deploy.yml
     with:
-      IMAGE_NAME: businner-net:latest
+      IMAGE_NAME:
+        required: true
+        type: string
 
   deploy-prod:
     needs: deploy-hlg
     uses: ./.github/workflows/prod-deploy.yml
     with:
-      IMAGE_NAME: businner-net:latest
+      IMAGE_NAME:
+        required: true
+        type: string
