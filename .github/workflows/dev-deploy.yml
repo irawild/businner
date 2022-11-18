@@ -1,6 +1,11 @@
 name: deploy to dev
 on:
   workflow_call:
+    inputs:
+      IMAGE_NAME:
+        required: true
+        type: string
+
 
 jobs:
   build:
