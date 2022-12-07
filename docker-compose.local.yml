@@ -11,6 +11,7 @@ services:
     ports:
       - '5432:5432'
     environment:
+      POSTGRES_USER: businner_user
       POSTGRES_PASSWORD: businner_password
       POSTGRES_DB: businner_db
     volumes:
