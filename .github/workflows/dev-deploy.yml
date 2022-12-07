@@ -14,11 +14,11 @@ jobs:
       name: dev
       url: dev.businner.com.br
     steps:
-      name: Build and push
-      uses: docker/build-push-action@v3.2.0
-      with:
-        push: false
-        tags: user/app:latest        
+      - name: Build and push
+        uses: docker/build-push-action@v3.2.0
+        with:
+          push: false
+          tags: user/app:latest        
   deploy:
     runs-on: ubuntu-latest
     environment:
